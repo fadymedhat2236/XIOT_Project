@@ -1,7 +1,6 @@
 #include "tm4c123gh6pm.h"
 #include "myProject.h"
 
-unsigned char ledOn='0';
 
 void SystemInit(){}
 

@@ -2,6 +2,7 @@
 #include "myProject.h"
 
 unsigned short outputPinNumber;
+unsigned char ledOn='0';
 
 void portf_init(unsigned short input)
 {
