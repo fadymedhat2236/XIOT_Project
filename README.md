@@ -12,7 +12,7 @@
 
 ![alt text](https://raw.githubusercontent.com/fadymedhat2236/XIOT_Project/master/photos/sensoronly.PNG)
 
-##Running the project
+## Running the project
 
 1-Import the source files to a new project in keil.
 
