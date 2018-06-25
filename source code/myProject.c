@@ -2,9 +2,10 @@
 #include "myProject.h"
 
 unsigned short outputPinNumber;
+unsigned short inputPinNumber;
 unsigned char ledOn='0';
 
-void portf_init(unsigned short input)
+void portf_init()
 {
 	SYSCTL_RCGCGPIO_R |=1<<5;
 	GPIO_PORTF_LOCK_R=0x4c4f434b;
@@ -15,7 +16,7 @@ void portf_init(unsigned short input)
 	GPIO_PORTF_PUR_R |=(1<<4) | (1<<0);
 	
 	//INTERRUPT
-	if(input==0)
+	if(inputPinNumber==0)
 	{
 		GPIO_PORTF_IS_R &=~(1<<0);
 		GPIO_PORTF_IBE_R &=~(1<<0);
@@ -97,7 +98,10 @@ void printString(char* s)
 //interrupt handlers
 void GPIOF_Handler()
 {
-	GPIO_PORTF_ICR_R |=(1<<4);
+	if(inputPinNumber==0)
+		GPIO_PORTF_ICR_R |=(1<<0);
+	else
+		GPIO_PORTF_ICR_R |=(1<<4);
 	if(outputPinNumber==1)
 		GPIO_PORTF_DATA_R ^=1<<1;
 	else if(outputPinNumber==2)
@@ -132,6 +136,7 @@ void ADC0SS3_Handler()
 void myfunction(unsigned short input,unsigned short output)
 {
 	outputPinNumber=output;//setting global pin number
+	inputPinNumber=input;
 	portf_init(input);
 	timer0A_init();//clock is 16MHZ
 	UART0_INIT();
