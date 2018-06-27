@@ -137,7 +137,7 @@ void myfunction(unsigned short input,unsigned short output)
 {
 	outputPinNumber=output;//setting global pin number
 	inputPinNumber=input;
-	portf_init(input);
+	portf_init();
 	timer0A_init();//clock is 16MHZ
 	UART0_INIT();
 	adc0_init();
