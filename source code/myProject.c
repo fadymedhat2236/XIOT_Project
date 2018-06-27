@@ -1,6 +1,7 @@
 #include "tm4c123gh6pm.h"
 #include "myProject.h"
 
+
 unsigned short outputPinNumber;
 unsigned short inputPinNumber;
 unsigned char ledOn='0';
